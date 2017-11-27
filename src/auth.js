@@ -6,7 +6,7 @@ export default function() {
     domain: 'jrscode1.auth0.com',
     clientID: 'Q9DTs6u03ClfHxo77yGhJSWCe5hOZS3w',
     redirectUri: 'http://localhost:3000/callback',
-    audience: 'https://jrscode1.auth0.com/userinfo',
+    audience: 'https://api.foobar.com',
     responseType: 'token id_token',
     scope: 'openid'
   })

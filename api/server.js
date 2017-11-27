@@ -24,7 +24,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/private', jwtCheck, (req, res) => {
-  res.send({ message: 'private route ' })
+  res.send({ message: 'A nicer message ' })
+})
+
+app.get('/admin', jwtCheck, (req, res) => {
+  res.send({ message: 'Admin only' })
 })
 
 app.listen(5000)
