@@ -8,7 +8,7 @@ export default function() {
     redirectUri: 'http://localhost:3000/callback',
     audience: 'https://api.foobar.com',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
   })
 
   return {
@@ -31,12 +31,14 @@ export default function() {
   }
 
   function setSession(authResult) {
+    console.log(authResult)
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     )
     localStorage.setItem('access_token', authResult.accessToken)
     localStorage.setItem('id_token', authResult.idToken)
     localStorage.setItem('expires_at', expiresAt)
+    localStorage.setItem('scope', authResult.scope)
     // navigate to the home route
     history.replace('/protected')
   }

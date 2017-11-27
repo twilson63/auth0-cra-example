@@ -4,6 +4,7 @@ const app = express()
 const cors = require('cors')
 const jwt = require('express-jwt')
 const jwks = require('jwks-rsa')
+const jwtAuthz = require('express-jwt-authz')
 
 const jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
@@ -27,7 +28,7 @@ app.get('/private', jwtCheck, (req, res) => {
   res.send({ message: 'A nicer message ' })
 })
 
-app.get('/admin', jwtCheck, (req, res) => {
+app.get('/admin', jwtCheck, jwtAuthz(['admin']), (req, res) => {
   res.send({ message: 'Admin only' })
 })
 
